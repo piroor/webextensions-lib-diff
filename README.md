@@ -8,7 +8,23 @@ This includes a diff implementation ported from Python.
 
 ## Usage
 
-Put `diff.js` and `dom-updater.js` together, then you can load the updater like:
+Put `diff.js` and `dom-updater.js` together into your extension. For example:
+
+```sh
+$ git clone https://github.com/piroor/webextensions-lib-dom-updater.git
+$ cp webextensions-lib-dom-updater/diff.js ../your-extension/src/
+$ cp webextensions-lib-dom-updater/dom-updater.js ../your-extension/src/
+```
+
+or
+
+```sh
+$ cd your-extension/src
+$ wget https://github.com/piroor/webextensions-lib-dom-updater/raw/master/diff.js
+$ wget https://github.com/piroor/webextensions-lib-dom-updater/raw/master/dom-updater.js
+```
+
+Then you can load the updater like:
 
 ```javascript
 import { DOMUpdater } from './dom-updater.js';
@@ -62,6 +78,8 @@ browser.runtime.onMessageExternal(message => {
 $ npm install
 $ npm run test
 ```
+
+Note that this is not a public npm module. `package.json` is there just to run tests.
 
 ## License
 
