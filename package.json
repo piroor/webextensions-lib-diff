@@ -1,10 +1,18 @@
 {
   "name": "webextensions-lib-dom-updater",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Simple DOM Updater for browser extensions",
+  "author": "YUKI \"Piro\" Hiroshi",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piroor/webextensions-lib-dom-updater.git"
+  },
   "engines": {
     "node": ">=13.0"
   },
   "type": "module",
+  "main": "dom-updater.js",
   "scripts": {
     "_lint": "eslint . --ext=.js --report-unused-disable-directives",
     "_format": "eslint . --ext=.js --report-unused-disable-directives --fix",
@@ -15,5 +23,9 @@
     "eslint": "^4.19.1",
     "eslint-plugin-import": "^2.20.1",
     "jsdom": "^16.2.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/piroor/webextensions-lib-dom-updater/issues"
+  },
+  "homepage": "https://github.com/piroor/webextensions-lib-dom-updater#readme"
 }
