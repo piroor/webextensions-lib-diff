@@ -12,6 +12,8 @@ async function run() {
     TestDOMUpdater,
   ];
   let runOnlyRunnable = false;
+  let failureCount = 0;
+  let errorCount = 0;
   findRunnable:
   for (const tests of testCases) {
     for (const name of Object.keys(tests)) {
@@ -53,15 +55,18 @@ async function run() {
         catch(error) {
           if (error && error.name == 'AssertionError') {
             logFailure(name, error);
+            failureCount++;
           }
           else {
             logError(name, error);
+            errorCount++;
           }
         }
       }
     }
   }
   console.log('Done.');
+  process.exit(failureCount + errorCount > 0 ? 1 : 0);
 }
 
 function logError(name, error) {
