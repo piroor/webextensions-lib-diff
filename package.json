@@ -6,8 +6,8 @@
   },
   "type": "module",
   "scripts": {
-    "lint": "eslint . --ext=.js --report-unused-disable-directives",
-    "format": "eslint . --ext=.js --report-unused-disable-directives --fix",
+    "_lint": "eslint . --ext=.js --report-unused-disable-directives",
+    "_format": "eslint . --ext=.js --report-unused-disable-directives --fix",
     "test": "node test/runner.js"
   },
   "devDependencies": {
