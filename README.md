@@ -8,7 +8,7 @@ This includes a diff implementation ported from Python.
 
 ## Usage
 
-Put `diff.js` and `dom-updater.js` together into your extension. For example:
+Put `src/diff.js` and `src/dom-updater.js` together into your extension. For example:
 
 ```sh
 $ npm install webextensions-lib-dom-updater
