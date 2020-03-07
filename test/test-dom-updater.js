@@ -3,9 +3,13 @@
 */
 'use strict';
 
-import { is /*, ok, ng*/ } from './assert.js';
+import jsdom from 'jsdom';
+import { is } from './assert.js';
+import { DOMUpdater } from '../dom-updater.js';
 
-import { DOMUpdater } from '../diff.js';
+const { JSDOM } = jsdom;
+const dom = new JSDOM();
+const document = dom.window.document;
 
 function createNode(source) {
   const range = document.createRange();
@@ -27,12 +31,16 @@ function assertUpdated(from, to, steps) {
 export function testUpdateAttributes() {
   assertUpdated(
     createNode(`
-      <span class="class1 class2">contents</span>
+      <span class="class1 class2"
+            data-updated="true"
+            data-removed="true">contents</span>
     `),
     createNode(`
-      <span class="class1 class2 class3">contents</span>
+      <span class="class1 class2 class3"
+            data-updated="false"
+            data-added="true">contents</span>
     `),
-    1
+    4
   );
 }
 
@@ -82,7 +90,7 @@ export function testUpdateNodesAndAttributes() {
   );
 }
 
-export function testUpdateNoHint() {
+export function testUpdateWithNoHint() {
   assertUpdated(
     createNode(`
       <span>contents 1</span>
@@ -102,4 +110,3 @@ export function testUpdateNoHint() {
     `)
   );
 }
-
