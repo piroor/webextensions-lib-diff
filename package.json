@@ -12,7 +12,7 @@
     "node": ">=13.0"
   },
   "type": "module",
-  "main": "dom-updater.js",
+  "main": "index.js",
   "scripts": {
     "_lint": "eslint . --ext=.js --report-unused-disable-directives",
     "_format": "eslint . --ext=.js --report-unused-disable-directives --fix",

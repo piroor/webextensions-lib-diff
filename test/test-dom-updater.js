@@ -5,7 +5,7 @@
 
 import jsdom from 'jsdom';
 import { is } from './assert.js';
-import { DOMUpdater } from '../dom-updater.js';
+import { DOMUpdater } from '../index.js';
 
 const { JSDOM } = jsdom;
 const dom = new JSDOM();

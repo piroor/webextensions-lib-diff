@@ -3,7 +3,7 @@
 */
 'use strict';
 
-//import { Diff } from '../diff.js';
+//import { Diff } from '../src/diff.js';
 
 import * as TestDOMUpdater from './test-dom-updater.js';
 
