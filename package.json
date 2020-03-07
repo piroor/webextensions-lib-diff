@@ -1,6 +1,6 @@
 {
   "name": "webextensions-lib-dom-updater",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple DOM Updater for browser extensions",
   "author": "YUKI \"Piro\" Hiroshi",
   "license": "SEE LICENSE IN LICENSE",
