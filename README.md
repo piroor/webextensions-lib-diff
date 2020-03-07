@@ -11,6 +11,14 @@ This includes a diff implementation ported from Python.
 Put `diff.js` and `dom-updater.js` together into your extension. For example:
 
 ```sh
+$ npm install webextensions-lib-dom-updater
+$ cp node_modules/webextensions-lib-dom-updater/diff.js ../your-extension/src/
+$ cp node_modules/webextensions-lib-dom-updater/dom-updater.js ../your-extension/src/
+```
+
+or
+
+```sh
 $ git clone https://github.com/piroor/webextensions-lib-dom-updater.git
 $ cp webextensions-lib-dom-updater/diff.js ../your-extension/src/
 $ cp webextensions-lib-dom-updater/dom-updater.js ../your-extension/src/
@@ -78,8 +86,6 @@ browser.runtime.onMessageExternal(message => {
 $ npm install
 $ npm run test
 ```
-
-Note that this is not a public npm module. `package.json` is there just to run tests.
 
 ## License
 
