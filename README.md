@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/piroor/webextensions-lib-dom-updater.svg?branch=master)](https://travis-ci.org/piroor/webextensions-lib-dom-updater)
 
-A simple DOM Updater for browser extensions, aiming to help cross-process request to update DOM contents in a "server" extension.
+A simple DOM Updater for browser extensions, aiming to help cross-process request to update DOM contents in a "server" extension. **Designed mainly for the real DOM world on web browsers, not for Node.js world.**
 
 This includes a diff implementation ported from Python.
 
