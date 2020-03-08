@@ -47,20 +47,20 @@ export function testUpdateAttributes() {
 export function testUpdateNodes() {
   assertUpdated(
     createNode(`
-      <span anonid="item1">contents</span>
-      <span anonid="item2">contents</span>
-      <span anonid="item3">contents</span>
-      <span anonid="item4">contents</span>
-      <span anonid="item5">contents</span>
-      <span anonid="item6">contents</span>
+      <span id="item1">contents</span>
+      <span id="item2">contents</span>
+      <span id="item3">contents</span>
+      <span id="item4">contents</span>
+      <span id="item5">contents</span>
+      <span id="item6">contents</span>
     `),
     createNode(`
-      <span anonid="item3">contents</span>
-      <span anonid="item4">contents</span>
-      <span anonid="item5">contents</span>
-      <span anonid="item6">contents</span>
-      <span anonid="item7">contents</span>
-      <span anonid="item8">contents</span>
+      <span id="item3">contents</span>
+      <span id="item4">contents</span>
+      <span id="item5">contents</span>
+      <span id="item6">contents</span>
+      <span id="item7">contents</span>
+      <span id="item8">contents</span>
     `),
     4 /* deletion */ + 4 /* insertion */
   );
@@ -69,20 +69,20 @@ export function testUpdateNodes() {
 export function testUpdateNodesAndAttributes() {
   assertUpdated(
     createNode(`
-      <span anonid="item1">contents</span>
-      <span anonid="item2">contents</span>
-      <span anonid="item3" part="active">contents, active</span>
-      <span anonid="item4">contents</span>
-      <span anonid="item5">contents</span>
-      <span anonid="item6">contents</span>
+      <span id="item1">contents</span>
+      <span id="item2">contents</span>
+      <span id="item3" part="active">contents, active</span>
+      <span id="item4">contents</span>
+      <span id="item5">contents</span>
+      <span id="item6">contents</span>
     `),
     createNode(`
-      <span anonid="item3">contents, old active</span>
-      <span anonid="item4">contents</span>
-      <span anonid="item5">contents</span>
-      <span anonid="item6" part="active">contents, new active</span>
-      <span anonid="item7">contents</span>
-      <span anonid="item8">contents</span>
+      <span id="item3">contents, old active</span>
+      <span id="item4">contents</span>
+      <span id="item5">contents</span>
+      <span id="item6" part="active">contents, new active</span>
+      <span id="item7">contents</span>
+      <span id="item8">contents</span>
     `),
     4 /* item deletion */ + 4 /* iteminsertion */ +
       1 /* remove attr */ + 1 /* replace text */ +
