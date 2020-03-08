@@ -59,7 +59,7 @@ export function testUpdateNodes() {
      <span id="item6">contents</span>
      <span id="item7">contents</span>
      <span id="item8">contents</span>`,
-    4 /* deletion */ + 4 /* insertion */
+    1 /* deletion */ + 1 /* insertion */
   );
 }
 
@@ -95,7 +95,7 @@ export function testUpdateNodesAndAttributes() {
      <span id="item6" part="active">contents, new active</span>
      <span id="item7">contents</span>
      <span id="item8">contents</span>`,
-    4 /* item deletion */ + 4 /* iteminsertion */ +
+    1 /* item deletion */ + 1 /* iteminsertion */ +
       1 /* remove attr */ + 1 /* replace text */ +
       1 /* remove attr */ + 1 /* replace text */
   );

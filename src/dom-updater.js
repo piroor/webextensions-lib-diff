@@ -12,15 +12,26 @@ export const DOMUpdater = {
    *                          e.g. DocumentFragment
    * @return count {number} - the count of appied changes
    */
-  update(before, after, counter = { count: 0 }) {
+  update(before, after, context) {
+    let topLevel = false;
+    if (!context) {
+      topLevel = true;
+      context = {
+        count:       0,
+        beforeRange: before.ownerDocument.createRange(),
+        afterRange:  after.ownerDocument.createRange()
+      };
+    }
+    const { beforeRange, afterRange } = context;
+
     if (before.nodeValue !== null ||
         after.nodeValue !== null) {
       if (before.nodeValue != after.nodeValue) {
         //console.log('node value: ', after.nodeValue);
         before.nodeValue = after.nodeValue;
-        counter.count++;
+        context.count++;
       }
-      return counter.count;
+      return context.count;
     }
 
     const beforeNodes = Array.from(before.childNodes, this._getDiffableNodeString);
@@ -35,43 +46,39 @@ export const DOMUpdater = {
             this.update(
               before.childNodes[fromStart + i],
               after.childNodes[toStart + i],
-              counter
+              context
             );
           }
           break;
         case 'delete':
-          for (let i = fromEnd - 1; i >= fromStart; i--) {
-            //console.log('delete: delete node: ', i, before.childNodes[i]);
-            before.removeChild(before.childNodes[i]);
-            counter.count++;
-          }
+          beforeRange.setStart(before, fromStart);
+          beforeRange.setEnd(before, fromEnd);
+          beforeRange.deleteContents();
+          context.count++;
           break;
-        case 'insert': {
-          const reference = before.childNodes[fromStart] || null;
-          for (let i = toStart; i < toEnd; i++) {
-            if (!after.childNodes[i])
-              continue;
-            //console.console.log('insert: insert node: ', i, after.childNodes[i]);
-            before.insertBefore(after.childNodes[i].cloneNode(true), reference);
-            counter.count++;
-          }
-        }; break;
-        case 'replace': {
-          for (let i = fromEnd - 1; i >= fromStart; i--) {
-            //console.log('replace: delete node: ', i, before.childNodes[i]);
-            before.removeChild(before.childNodes[i]);
-            counter.count++;
-          }
-          const reference = before.childNodes[fromStart] || null;
-          for (let i = toStart; i < toEnd; i++) {
-            if (!after.childNodes[i])
-              continue;
-            //console.log('replace: insert node: ', i, after.childNodes[i]);
-            before.insertBefore(after.childNodes[i].cloneNode(true), reference);
-            counter.count++;
-          }
-        }; break;
+        case 'insert':
+          beforeRange.setStart(before, fromStart);
+          beforeRange.setEnd(before, fromEnd);
+          afterRange.setStart(after, toStart);
+          afterRange.setEnd(after, toEnd);
+          beforeRange.insertNode(afterRange.cloneContents());
+          context.count++;
+          break;
+        case 'replace':
+          beforeRange.setStart(before, fromStart);
+          beforeRange.setEnd(before, fromEnd);
+          beforeRange.deleteContents();
+          context.count++;
+          afterRange.setStart(after, toStart);
+          afterRange.setEnd(after, toEnd);
+          beforeRange.insertNode(afterRange.cloneContents());
+          context.count++;
+          break;
       }
+    }
+    if (topLevel) {
+      beforeRange.detach();
+      afterRange.detach();
     }
 
     if (before.nodeType == before.ELEMENT_NODE &&
@@ -89,7 +96,7 @@ export const DOMUpdater = {
               const name = beforeAttrs[i].split(':')[0];
               //console.log('delete: delete attr: ', name);
               before.removeAttribute(name);
-              counter.count++;
+              context.count++;
             }
             break;
           case 'insert':
@@ -99,7 +106,7 @@ export const DOMUpdater = {
               const value = attr.slice(1).join(':');
               //console.log('insert: set attr: ', name, value);
               before.setAttribute(name, value);
-              counter.count++;
+              context.count++;
             }
             break;
           case 'replace':
@@ -111,7 +118,7 @@ export const DOMUpdater = {
               //console.log('replace: set attr: ', name, value);
               before.setAttribute(name, value);
               insertedAttrs.add(name);
-              counter.count++;
+              context.count++;
             }
             for (let i = fromStart; i < fromEnd; i++) {
               const name = beforeAttrs[i].split(':')[0];
@@ -119,13 +126,13 @@ export const DOMUpdater = {
                 continue;
               //console.log('replace: delete attr: ', name);
               before.removeAttribute(name);
-              counter.count++;
+              context.count++;
             }
             break;
         }
       }
     }
-    return counter.count;
+    return context.count;
   },
 
   _getDiffableNodeString(node) {
