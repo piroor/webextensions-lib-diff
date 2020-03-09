@@ -11,9 +11,10 @@ This includes a diff implementation ported from Python.
 Put `src/diff.js` and `src/dom-updater.js` together into your extension. For example:
 
 ```sh
+$ cd your-extension
 $ npm install webextensions-lib-dom-updater
-$ cp node_modules/webextensions-lib-dom-updater/src/diff.js ../your-extension/src/
-$ cp node_modules/webextensions-lib-dom-updater/src/dom-updater.js ../your-extension/src/
+$ cp node_modules/webextensions-lib-dom-updater/src/diff.js src/
+$ cp node_modules/webextensions-lib-dom-updater/src/dom-updater.js src/
 ```
 
 or
