@@ -81,6 +81,24 @@ browser.runtime.onMessageExternal(message => {
 });
 ```
 
+## Comparison with similar libraries
+
+Here is a result of [the performance benchmark](https://github.com/piroor/treestyletab/blob/86a697e3afb0045a0d53b5cbb7cd06f6cfa050cb/webextensions/tests/test-dom-updater.js).
+
+|Implementation|Total turnaround time to update 5000 times|Average turnaround time per one updating|
+|---|---|---|
+|DOMUpdater|15030msec|about 3.01msec|
+|[morphdom](https://github.com/patrick-steele-idem/morphdom), with string parameter|18899msec|about 3.78msec|
+|[morphdom](https://github.com/patrick-steele-idem/morphdom), with DocumentFragment parameter|18496msec|about 3.70msec|
+
+Environment:
+
+* Runtime: Firefox Nightly 75.0a1 (2020.3.9)
+* OS: Windows 10
+* CPU: Intel Core i5-8250U 1.80GHz
+* RAM: 16.0GB
+
+
 ## How to run test
 
 ```sh
