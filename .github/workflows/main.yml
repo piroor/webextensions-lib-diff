@@ -1,0 +1,20 @@
+name: CI/CD
+
+on: [push]
+
+strategy:
+  matrix:
+    node-version: [13.x]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - run: npm install
+    - name: lint
+      run: npm run lint
+    - name: test
+      run: npm run test
