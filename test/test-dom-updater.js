@@ -4,8 +4,10 @@
 'use strict';
 
 import jsdom from 'jsdom';
-import { is } from './assert.js';
 import { DOMUpdater } from '../index.js';
+
+import { assert } from 'tiny-esm-test-runner';
+const { is } = assert;
 
 const { JSDOM } = jsdom;
 const dom = new JSDOM();

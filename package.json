@@ -16,13 +16,14 @@
   "scripts": {
     "lint": "eslint . --ext=.js --report-unused-disable-directives",
     "format": "eslint . --ext=.js --report-unused-disable-directives --fix",
-    "test": "node test/runner.js"
+    "test": "run-tiny-esm-test-runner test/test-*.js"
   },
   "devDependencies": {
     "assert": "^2.0.0",
     "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.20.1",
-    "jsdom": "^16.2.0"
+    "jsdom": "^16.2.0",
+    "tiny-esm-test-runner": "^0.0.5"
   },
   "bugs": {
     "url": "https://github.com/piroor/webextensions-lib-dom-updater/issues"
