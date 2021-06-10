@@ -1,6 +1,6 @@
 # webextensions-lib-dom-updater
 
-[![Build Status](https://travis-ci.org/piroor/webextensions-lib-dom-updater.svg?branch=trunk)](https://travis-ci.org/piroor/webextensions-lib-dom-updater)
+![Build Status](https://github.com/piroor/webextensions-lib-dom-updater/actions/workflows/main.yml/badge.svg?branch=trunk)
 
 A simple DOM Updater for browser extensions, aiming to help cross-process request to update DOM contents in a "server" extension. **Designed mainly for the real DOM world on web browsers, not for Node.js world.**
 
